@@ -1,0 +1,24 @@
+---
+title: "Assignment-4"
+author: "Harika"
+date: "9/29/2019"
+output: html_document
+---
+
+```{r}
+
+library(lpSolveAPI)
+
+lprec <- read.lp("spenjerl4.lp")
+
+
+solve(lprec)
+
+get.objective(lprec)
+
+get.variables(lprec)
+
+get.constraints(lprec)
+
+```
+
