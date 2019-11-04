@@ -1,0 +1,142 @@
+---
+title: "DEA"
+author: "Harika"
+date: "11/3/2019"
+output: html_document
+---
+facility-1
+```{r}
+library(lpSolveAPI)
+dmu1 <- read.lp("DMU1.lp")
+dmu1
+solve(dmu1)
+get.objective(dmu1)
+get.variables(dmu1)
+```
+
+facility-2
+
+```{r}
+library(lpSolveAPI)
+dmu2 <- read.lp("DMU2.lp")
+dmu2
+solve(dmu2)
+get.objective(dmu2)
+get.variables(dmu2)
+```
+
+facility-3
+```{r}
+library(lpSolveAPI)
+dmu3 <- read.lp("DMU3.lp")
+dmu3
+solve(dmu3)
+get.objective(dmu3)
+get.variables(dmu3)
+```
+
+facility-4
+
+```{r}
+library(lpSolveAPI)
+dmu4 <- read.lp("DMU4.lp")
+dmu4
+solve(dmu4)
+get.objective(dmu4)
+get.variables(dmu4)
+```
+
+facility-5
+
+```{r}
+library(lpSolveAPI)
+dmu5 <- read.lp("DMU5.lp")
+dmu5
+solve(dmu5)
+get.objective(dmu5)
+get.variables(dmu5)
+```
+
+facility-6
+
+```{r}
+library(lpSolveAPI)
+dmu6 <- read.lp("DMU6.lp")
+dmu6
+solve(dmu6)
+get.objective(dmu6)
+get.variables(dmu6)
+```
+
+Benchmarking
+```{r}
+library(Benchmarking)
+x <- matrix(c(150,400,320,520,350,320,0.2,0.7,1.2,2.0,1.2,0.7),ncol=2)
+y <- matrix(c(14000,14000,42000,28000,19000,14000,3500,21000,10500,42000,25000,15000),ncol = 2)
+colnames(y) <- c("reimbursed","privately paid")
+colnames(x) <- c("staff","supplies")
+x
+y
+```
+
+DEA analysis 
+```{r}
+e <- dea(x,y,RTS = "crs")            # provide the input and output for crs model
+e
+e1 <- dea(x,y,RTS = "fdh")            # provide the input and output for fdh model
+e1
+e2 <- dea(x,y,RTS = "vrs")            # provide the input and output for vrs model
+e2
+e3 <- dea(x,y,RTS = "irs")            # provide the input and output for irs model
+e3
+e4 <- dea(x,y,RTS = "drs")            # provide the input and output for drs model
+e4
+e5 <- dea(x,y,RTS = "add")            # provide the input and output, add/frh model
+e5
+e
+e6 <- dea(x,y,RTS = "vrs+")  
+e6
+e7 <- dea(x,y,RTS = "irs2")
+e7
+e8 <- dea(x,y,RTS = "fdh+") 
+e8
+```
+Finding peers
+
+```{r}
+peers(e)
+peers(e1)
+peers(e2)
+peers(e3)
+peers(e4)
+peers(e5)
+peers(e6)
+peers(e7)
+peers(e8)
+```
+
+Finding lambda
+
+```{r}
+lambda(e)
+lambda(e1)
+lambda(e2)
+lambda(e3)
+lambda(e4)
+lambda(e5)
+lambda(e6)
+lambda(e7)
+lambda(e8)
+
+```
+Comment: CRS (constant return to scale) method results indicates that DMU1,2,3,4 are efficient,DMU 4 is 0.9777 efficient and DMU 5 is 0.8675 efficient
+FDH (Free Disposability Hull)---> All DMUs are efficient.
+VRS(variable returns to scale) --->DMU 1,2,3,4,5 are efficient and DMU 6 is 0.8963 efficient.
+IRS(Increasing return to scale)-->DMU 1,2,3,4,5 are efficient and DMU 6 is 0.8963 efficient.
+DRS(decreasing retun to scale)--->DMU 1,2,3,4 are efficient ,DMU 5 is 0.9775 efficient and DMU 6 is 0.8963 efficient.
+FRH/Add (Free replicability hull)---> All DMUs are efficient 
+
+```{r}
+
+```
+
