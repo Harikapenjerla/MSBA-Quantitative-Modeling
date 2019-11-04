@@ -37,3 +37,40 @@ get.variables(gp)
 
 
 
+```{r}
+library(lpSolveAPI)
+gp1 <- read.lp("goal1.lp")
+gp1
+
+solve(gp1)
+get.objective(gp1)
+get.constraints(gp1)
+get.variables(gp1)
+```
+
+
+first stage
+```{r}
+library(lpSolveAPI)
+gp2 <- read.lp("goal_firststage.lp")
+gp2
+
+solve(gp2)
+get.objective(gp2)
+get.constraints(gp2)
+get.variables(gp2)
+```
+
+
+second stage 
+```{r}
+library(lpSolveAPI)
+gp3 <- read.lp("goal _secondstage.lp")
+gp3
+
+solve(gp3)
+get.objective(gp3)
+get.constraints(gp3)
+get.variables(gp3)
+```
+
